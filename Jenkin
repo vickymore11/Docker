@@ -1,7 +1,7 @@
 pipeline{
   agent any
   stages{
-    stage{'checkout'}{
+    stage('checkout'){
        steps{
           geit url:https://github.com/vickymore11/Docker/new/main
 }
