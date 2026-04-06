@@ -1,0 +1,30 @@
+pipeline{
+  agent any
+  stages{
+    stage{'checkout'}{
+       steps{
+          geit url:https://github.com/vickymore11/Docker/new/main
+}
+}
+
+stage{'Build Image'}{
+ steps{
+   bat 'docker build -t myimg -'
+}
+}
+stage('3.Stop/Remove old containers'){
+  steps{
+    bat 'docker stop mycont || exit 0'
+    bat 'docker rm mycont || exit 0'
+ 
+}
+}
+stage('Run the Image- Containerize'){
+  steps{
+    bat 'docker run -d -p 5000:80 --name mycont myimg'
+}
+}
+
+
+}
+}
